@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JazzCraft</title>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: #000;
+      font-family: Arial, sans-serif;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    /* subtle vignette for depth */
+    body::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, rgba(0,0,0,0) 40%, rgba(0,0,0,0.75) 100%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .particle {
+      position: absolute;
+      width: 3px;
+      height: 3px;
+      background: #D11A1A;
+      opacity: 0.2;
+      border-radius: 50%;
+      animation: floatUp linear infinite;
+    }
+
+    @keyframes floatUp {
+      from {
+        transform: translateY(100vh);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(-10vh);
+        opacity: 0.5;
+      }
+    }
+
+    .container {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1 {
+      font-size: 82px;
+      margin: 0;
+      color: #D11A1A;
+      letter-spacing: 6px;
+      text-shadow:
+        0 0 4px #8b0000,
+        0 0 8px #5A0000;
+      animation: pulse 3.2s infinite ease-in-out;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+        text-shadow:
+          0 0 3px #8b0000,
+          0 0 6px #5A0000;
+      }
+      50% {
+        transform: scale(1.015);
+        text-shadow:
+          0 0 6px #b30000,
+          0 0 10px #5A0000;
+      }
+    }
+
+    p {
+      margin-top: 10px;
+      color: #aaa;
+      font-size: 16px;
+      letter-spacing: 1px;
+    }
+
+    .buttons {
+      margin-top: 35px;
+    }
+
+    .btn {
+      display: inline-block;
+      margin: 10px;
+      padding: 14px 32px;
+      font-size: 18px;
+      color: white;
+      text-decoration: none;
+      border: 1px solid #D11A1A;
+      border-radius: 10px;
+      background: rgba(0,0,0,0.35);
+      transition: 0.2s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* subtle click/shine effect */
+    .btn::after {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.08), transparent);
+      transform: rotate(25deg);
+      transition: 0.4s;
+      opacity: 0;
+    }
+
+    .btn:hover::after {
+      opacity: 1;
+    }
+
+    .btn:hover {
+      background: #D11A1A;
+      transform: scale(1.06);
+      box-shadow: 0 0 10px #5A0000;
+    }
+
+    .footer {
+      margin-top: 18px;
+      font-size: 12px;
+      color: #555;
+      letter-spacing: 1px;
+    }
+  </style>
+</head>
+
+<body>
+
+<script>
+  for (let i = 0; i < 18; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.style.left = Math.random() * 100 + 'vw';
+    p.style.animationDuration = (4 + Math.random() * 6) + 's';
+    document.body.appendChild(p);
+  }
+</script>
+
+<div class="container">
+  <h1>JazzCraft</h1>
+  <p>1.5.2 Survival • Choose your client</p>
+
+  <div class="buttons">
+    <a class="btn" href="classic.html">Classic Client</a>
+    <a class="btn" href="resent.html">Resent Client</a>
+  </div>
+
+  <div class="footer">
+    v1.0 • Eagler 1.5.2 Launcher
+  </div>
+</div>
+
+</body>
+</html>
