@@ -107,6 +107,7 @@
     }
   </style>
 </head>
+
 <body>
 
 <canvas id="bg"></canvas>
@@ -118,8 +119,8 @@
   <p>1.5.2 Survival • Choose your client</p>
 
   <div class="buttons">
-    <a class="btn" href="classic.html">Classic Client</a>
-    <a class="btn" href="resent.html">Resent Client</a>
+    <a class="btn" href="https://jazzable.github.io/classicclient/">Classic Client</a>
+    <a class="btn" href="https://jazzable.github.io/resent/">Resent Client</a>
   </div>
 
   <div class="ip" id="ip" onclick="copyIP()">
@@ -141,7 +142,7 @@ function copyIP(){
   setTimeout(()=>el.textContent=ip,1200);
 }
 
-// subtle drifting particle effect (no glow dome)
+// particle background
 const canvas=document.getElementById("bg");
 const ctx=canvas.getContext("2d");
 
