@@ -15,7 +15,9 @@
       --text:#d6d6d6;
     }
 
-    *{ box-sizing:border-box; }
+    *{
+      box-sizing:border-box;
+    }
 
     body{
       margin:0;
@@ -65,7 +67,9 @@
       color:#aaa;
     }
 
-    .buttons{ margin-top:30px; }
+    .buttons{
+      margin-top:30px;
+    }
 
     .btn{
       display:inline-block;
@@ -105,112 +109,87 @@
       font-size:11px;
       color:#666;
     }
-
-    /* hidden button */
-    .secret-btn{
-      position:fixed;
-      bottom:20px;
-      right:20px;
-      z-index:5;
-
-      padding:10px 16px;
-      border-radius:8px;
-
-      text-decoration:none;
-      font-size:12px;
-
-      opacity:0;
-      color:transparent;
-      border:1px solid transparent;
-
-      transition:0.2s ease;
-    }
-
-    .secret-btn:hover{
-      opacity:1;
-      color:var(--red);
-      border-color:var(--red);
-      background:rgba(0,0,0,0.8);
-    }
-
   </style>
 </head>
 
 <body>
 
-<canvas id="bg"></canvas>
+  <canvas id="bg"></canvas>
 
-<div class="container">
-  <img class="icon" src="icon.png" alt="icon" />
+  <div class="container">
+    <img class="icon" src="icon.png" alt="icon" />
 
-  <h1>JazzCraft</h1>
-  <p>1.5.2 Survival • Choose your client</p>
+    <h1>JazzCraft</h1>
+    <p>1.5.2 Survival • Choose your client</p>
 
-  <div class="buttons">
-    <a class="btn" href="https://jazzable.github.io/classicclient/">Classic Client</a>
-    <a class="btn" href="https://jazzable.github.io/resent/">Resent Client</a>
+    <div class="buttons">
+      <a class="btn" href="https://jazzable.github.io/classicclient/">Classic Client</a>
+      <a class="btn" href="https://jazzable.github.io/resent/">Resent Client</a>
+    </div>
+
+    <div class="ip" id="ip" onclick="copyIP()">
+      <div style="font-size:11px; color:#777; margin-bottom:4px;">
+        Server IP - Click to Copy
+      </div>
+      wss://join.oriecraft.uk
+    </div>
+
+    <div class="footer">
+      JazzCraft Launcher v1
+    </div>
   </div>
 
-  <div class="ip" id="ip" onclick="copyIP()">
-    <div style="font-size:11px; color:#777; margin-bottom:4px;">Server IP - Click to Copy</div>
-    wss://join.oriecraft.uk
-  </div>
+  <script>
+    function copyIP(){
+      const ip = "wss://join.oriecraft.uk";
+      navigator.clipboard.writeText(ip);
 
-  <div class="footer">
-    JazzCraft Launcher v1
-  </div>
-</div>
+      const el = document.getElementById("ip");
+      el.textContent = "COPIED";
 
-<!-- hidden button -->
-<a href="https://pornhub.com" class="secret-btn">SECRET</a>
+      setTimeout(() => {
+        el.textContent = ip;
+      }, 1200);
+    }
 
-<script>
-function copyIP(){
-  const ip="wss://join.oriecraft.uk";
-  navigator.clipboard.writeText(ip);
-  const el=document.getElementById("ip");
-  el.textContent="COPIED";
-  setTimeout(()=>el.textContent=ip,1200);
-}
+    // particle background
+    const canvas = document.getElementById("bg");
+    const ctx = canvas.getContext("2d");
 
-// particle background
-const canvas=document.getElementById("bg");
-const ctx=canvas.getContext("2d");
+    canvas.width = innerWidth;
+    canvas.height = innerHeight;
 
-canvas.width=innerWidth;
-canvas.height=innerHeight;
+    const particles = Array.from({length: 80}, () => ({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      r: Math.random() * 1.5 + 0.5,
+      dx: (Math.random() - 0.5) * 0.3,
+      dy: (Math.random() - 0.5) * 0.3
+    }));
 
-const particles = Array.from({length: 80}, () => ({
-  x: Math.random()*canvas.width,
-  y: Math.random()*canvas.height,
-  r: Math.random()*1.5+0.5,
-  dx: (Math.random()-0.5)*0.3,
-  dy: (Math.random()-0.5)*0.3
-}));
+    function animate(){
+      ctx.fillStyle = "rgba(0,0,0,0.65)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-function animate(){
-  ctx.fillStyle="rgba(0,0,0,0.65)";
-  ctx.fillRect(0,0,canvas.width,canvas.height);
+      ctx.fillStyle = "#ff1a1a";
 
-  ctx.fillStyle="#ff1a1a";
+      particles.forEach(p => {
+        p.x += p.dx;
+        p.y += p.dy;
 
-  particles.forEach(p=>{
-    p.x+=p.dx;
-    p.y+=p.dy;
+        if(p.x < 0 || p.x > canvas.width) p.dx *= -1;
+        if(p.y < 0 || p.y > canvas.height) p.dy *= -1;
 
-    if(p.x<0||p.x>canvas.width) p.dx*=-1;
-    if(p.y<0||p.y>canvas.height) p.dy*=-1;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fill();
+      });
 
-    ctx.beginPath();
-    ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-    ctx.fill();
-  });
+      requestAnimationFrame(animate);
+    }
 
-  requestAnimationFrame(animate);
-}
-
-animate();
-</script>
+    animate();
+  </script>
 
 </body>
 </html>
