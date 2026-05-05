@@ -105,6 +105,34 @@
       font-size:11px;
       color:#666;
     }
+
+    /* hidden button */
+    .secret-btn{
+      position:fixed;
+      bottom:20px;
+      right:20px;
+      z-index:5;
+
+      padding:10px 16px;
+      border-radius:8px;
+
+      text-decoration:none;
+      font-size:12px;
+
+      opacity:0;
+      color:transparent;
+      border:1px solid transparent;
+
+      transition:0.2s ease;
+    }
+
+    .secret-btn:hover{
+      opacity:1;
+      color:var(--red);
+      border-color:var(--red);
+      background:rgba(0,0,0,0.8);
+    }
+
   </style>
 </head>
 
@@ -132,6 +160,9 @@
     JazzCraft Launcher v1
   </div>
 </div>
+
+<!-- hidden button -->
+<a href="https://pornhub.com" class="secret-btn">SECRET</a>
 
 <script>
 function copyIP(){
