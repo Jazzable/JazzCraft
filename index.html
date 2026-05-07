@@ -107,11 +107,21 @@
       border:1px solid rgba(255,26,26,0.25);
       border-radius:6px;
       cursor:pointer;
+      text-align:center;
     }
 
     .ip:hover{
       color:var(--cyan);
       border-color:var(--cyan);
+    }
+
+    /* discord under ip */
+    .discord{
+      margin-top:10px;
+      padding:8px 16px;
+      font-size:13px;
+      border-radius:8px;
+      display:inline-block;
     }
 
     .footer{
@@ -135,15 +145,16 @@
   <div class="buttons">
     <a class="btn" href="https://jazzable.github.io/classicclient/">Classic Client</a>
     <a class="btn" href="https://jazzable.github.io/resent/">Resent Client</a>
-    <a class="btn discord" href="https://discord.gg/nSrv5eYBHn" target="_blank">Discord</a>
   </div>
 
   <div class="ip" id="ip" onclick="copyIP()">
     <div style="font-size:11px; color:#777; margin-bottom:4px;">
-      Server IP - Click to Copy
+      Click to Copy
     </div>
     wss://join.oriecraft.uk
   </div>
+
+  <a class="btn discord" href="https://discord.gg/nSrv5eYBHn" target="_blank">Discord</a>
 
   <div class="footer">
     JazzCraft Launcher v1
